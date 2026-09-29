@@ -1,43 +1,44 @@
 /*
 @output
-x = 12
-y = 7
-result = 8
-bonus = 3
+balance = 1200
+deposit = 350
+withdrawal = 200
+serviceFee = 15
+finalBalance = 1335
+transactionOK = 1
 
 @variables
-x = 12
-y = 7
-result = 8
-bonus = 3
+balance = 1200
+deposit = 350
+withdrawal = 200
+serviceFee = 15
+finalBalance = 1335
+transactionOK = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int x = 12;
-    int y = 7;
-    int result;
-    int bonus = 4;
+    int balance = 1200, deposit = 350, withdrawal = 200, serviceFee = 25;
+    int finalBalance, transactionOK;
 
-    result = x - y * 2;
+    finalBalance = balance + deposit - withdrawal - serviceFee;
+    transactionOK = (deposit > 0 && withdrawal <= balance) ||
+                    (withdrawal == 0 && !((deposit < 0)));
 
-    if (result > 5)
-    {
-        result = result + bonus;
-        bonus = bonus + 2;
-    }
-    else
-    {
-        result = result + 10;
-        bonus = bonus - 1;
-    }
+    if (transactionOK && finalBalance >= 1000)
+        serviceFee = serviceFee - 10;
+    else if (!transactionOK || finalBalance < 500)
+        serviceFee = serviceFee + 20;
 
-    printf("x = %d\n", x);
-    printf("y = %d\n", y);
-    printf("result = %d\n", result);
-    printf("bonus = %d\n", bonus);
+    finalBalance = balance + deposit - withdrawal - serviceFee;
 
+    printf("balance = %d\n", balance);
+    printf("deposit = %d\n", deposit);
+    printf("withdrawal = %d\n", withdrawal);
+    printf("serviceFee = %d\n", serviceFee);
+    printf("finalBalance = %d\n", finalBalance);
+    printf("transactionOK = %d\n", transactionOK);
     return 0;
 }

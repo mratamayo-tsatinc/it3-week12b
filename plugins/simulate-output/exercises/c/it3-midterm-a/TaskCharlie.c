@@ -1,42 +1,41 @@
 /*
 @output
-score = 72
-points = 15
-level = 2
+credits = 18
+units = 3
+labFee = 75
+baseFee = 900
+totalFee = 1095
+enrolled = 1
 
 @variables
-score = 72
-points = 15
-level = 2
+credits = 18
+units = 3
+labFee = 75
+baseFee = 900
+totalFee = 1095
+enrolled = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int score = 68;
-    int points = 10;
-    int level = 2;
+    int credits = 18, units = 3, labFee = 75, baseFee = 900;
+    int totalFee, enrolled;
 
-    if (score >= 60)
-    {
-        points = points + 5;
-    }
+    totalFee = baseFee + units * labFee - credits / 6 * 10;
+    enrolled = (credits >= 12 && units >= 3) || !((credits < 6));
 
-    if (score >= 70)
-    {
-        points = points + 10;
-        level = level + 1;
-    }
+    if (enrolled && totalFee < 1000)
+        totalFee = totalFee + 50;
+    else if (!enrolled || credits > 24)
+        totalFee = totalFee + 100;
 
-    if (points > 12)
-    {
-        score = score + 4;
-    }
-
-    printf("score = %d\n", score);
-    printf("points = %d\n", points);
-    printf("level = %d\n", level);
-
+    printf("credits = %d\n", credits);
+    printf("units = %d\n", units);
+    printf("labFee = %d\n", labFee);
+    printf("baseFee = %d\n", baseFee);
+    printf("totalFee = %d\n", totalFee);
+    printf("enrolled = %d\n", enrolled);
     return 0;
 }

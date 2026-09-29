@@ -1,51 +1,44 @@
 /*
 @output
-age = 19
-score = 82
-points = 20
-status = 1
+items = 5
+price = 120
+member = 1
+subtotal = 620
+discount = 50
+amountDue = 570
 
 @variables
-age = 19
-score = 82
-points = 20
-status = 1
+items = 5
+price = 120
+member = 1
+subtotal = 620
+discount = 50
+amountDue = 570
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int age = 19;
-    int score = 82;
-    int points = 5;
-    int status = 0;
+    int items = 5, price = 120, member = 1;
+    int subtotal, discount = 20, amountDue;
 
-    if (age >= 18)
-    {
-        points = points + 5;
+    subtotal = items * price + 2 * 10;
 
-        if (score >= 80)
-        {
-            points = points + 10;
-            status = 1;
-        }
-        else
-        {
-            points = points + 2;
-            status = 2;
-        }
-    }
+    if ((member == 1 && items >= 5) || (!member && subtotal >= 1000))
+        discount = discount + 30;
+    else if (items > 2 && price >= 100)
+        discount = discount + 10;
     else
-    {
-        points = points - 1;
-        status = 3;
-    }
+        discount = 0;
 
-    printf("age = %d\n", age);
-    printf("score = %d\n", score);
-    printf("points = %d\n", points);
-    printf("status = %d\n", status);
+    amountDue = subtotal - discount;
 
+    printf("items = %d\n", items);
+    printf("price = %d\n", price);
+    printf("member = %d\n", member);
+    printf("subtotal = %d\n", subtotal);
+    printf("discount = %d\n", discount);
+    printf("amountDue = %d\n", amountDue);
     return 0;
 }

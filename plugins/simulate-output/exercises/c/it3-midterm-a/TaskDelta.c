@@ -1,49 +1,43 @@
 /*
 @output
-score = 81
-grade = 2
-bonus = 5
+hours = 4
+rate = 85
+materials = 120
+laborCost = 350
+totalCost = 470
+approved = 1
 
 @variables
-score = 81
-grade = 2
-bonus = 5
+hours = 4
+rate = 85
+materials = 120
+laborCost = 350
+totalCost = 470
+approved = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int score = 76;
-    int grade;
-    int bonus = 3;
+    int hours = 4, rate = 85, materials = 120;
+    int laborCost, totalCost, approved;
 
-    if (score >= 90)
-    {
-        grade = 1;
-        bonus = bonus + 5;
-    }
-    else if (score >= 75)
-    {
-        grade = 2;
-        bonus = bonus + 2;
-    }
-    else if (score >= 60)
-    {
-        grade = 3;
-        bonus = bonus - 1;
-    }
-    else
-    {
-        grade = 4;
-        bonus = 0;
-    }
+    laborCost = hours * rate + 20 / 2;
+    totalCost = laborCost + materials;
+    approved = (hours > 0 && rate >= 50) &&
+               (materials <= 200 || !((totalCost > 600)));
 
-    score = score + bonus;
+    if (approved && totalCost <= 500)
+        totalCost = totalCost + 0;
+    else if (!approved || totalCost > 700)
+        totalCost = totalCost + 50;
 
-    printf("score = %d\n", score);
-    printf("grade = %d\n", grade);
-    printf("bonus = %d\n", bonus);
-
+    printf("hours = %d\n", hours);
+    printf("rate = %d\n", rate);
+    printf("materials = %d\n", materials);
+    printf("laborCost = %d\n", laborCost);
+    printf("totalCost = %d\n", totalCost);
+    printf("approved = %d\n", approved);
     return 0;
 }

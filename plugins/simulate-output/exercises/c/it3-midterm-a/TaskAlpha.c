@@ -1,39 +1,45 @@
 /*
 @output
-a = 8
-b = 5
-c = 18
-total = 10
+itemCost = 450
+quantity = 3
+discount = 75
+subtotal = 1390
+total = 1315
+canBuy = 1
 
 @variables
-a = 8
-b = 5
-c = 18
-total = 10
+itemCost = 450
+quantity = 3
+discount = 75
+subtotal = 1390
+total = 1315
+canBuy = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int a = 8;
-    int b = 5;
-    int c;
-    int total;
+    int itemCost = 450, quantity = 3, discount = 50;
+    int subtotal, total, canBuy;
 
-    c = a + b * 2;
-    total = c - a;
+    subtotal = itemCost * quantity + 20 * 2;
+    canBuy = (quantity > 0 && subtotal >= 500) || !((itemCost < 100));
 
-    if (total > 10)
-    {
-        total = total + 3;
-        c = c - 2;
-    }
+    if (canBuy && subtotal >= 1000)
+        discount = discount + 25;
+    else if (canBuy || quantity == 1)
+        discount = discount + 10;
+    else
+        discount = 0;
 
-    printf("a = %d\n", a);
-    printf("b = %d\n", b);
-    printf("c = %d\n", c);
+    total = subtotal - discount;
+
+    printf("itemCost = %d\n", itemCost);
+    printf("quantity = %d\n", quantity);
+    printf("discount = %d\n", discount);
+    printf("subtotal = %d\n", subtotal);
     printf("total = %d\n", total);
-
+    printf("canBuy = %d\n", canBuy);
     return 0;
 }

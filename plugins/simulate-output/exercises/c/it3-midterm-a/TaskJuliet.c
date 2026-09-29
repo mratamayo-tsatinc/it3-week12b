@@ -1,102 +1,62 @@
 /*
 @output
-a = 7
-b = 6
-c = 7
-total = 18
-level = 2
-bonus = 5
-result = 34
+choice = 3
+tickets = 4
+ticketPrice = 75
+fee = 20
+subtotal = 320
+total = 340
+valid = 1
 
 @variables
-a = 7
-b = 6
-c = 7
-total = 18
-level = 2
-bonus = 5
-result = 34
+choice = 3
+tickets = 4
+ticketPrice = 75
+fee = 20
+subtotal = 320
+total = 340
+valid = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int a = 7;
-    int b = 4;
-    int c = 3;
-    int total;
-    int level;
-    int bonus = 5;
-    int result;
+    int choice = 3, tickets = 4, ticketPrice = 75, fee = 20;
+    int subtotal, total, valid;
 
-    total = a * b + c;
+    subtotal = tickets * ticketPrice + 10 * 2;
+    valid = (tickets > 0 && ticketPrice >= 50) ||
+            (choice == 1 && !((tickets > 10)));
 
-    if (total > 30)
-    {
-        total = total - 5;
-        bonus = bonus + 2;
-    }
-
-    if (total >= 25)
-    {
-        level = 3;
-    }
-    else if (total >= 20)
-    {
-        level = 2;
-    }
-    else
-    {
-        level = 1;
-    }
-
-    if (level == 3)
-    {
-        if (bonus >= 7)
-        {
-            result = total + bonus;
-        }
-        else
-        {
-            result = total - bonus;
-        }
-    }
-    else
-    {
-        result = total + level;
-    }
-
-    switch (level)
+    switch (choice)
     {
         case 1:
-            result = result + 2;
-            a = a + 1;
+            fee = fee + 5;
             break;
-
         case 2:
-            result = result * 2;
-            b = b + 2;
+            fee = fee + 10;
             break;
-
         case 3:
-            result = result - 3;
-            c = c + 4;
+            fee = fee + 0;
             break;
-
         default:
-            result = 0;
+            fee = fee + 20;
     }
 
-    total = total + a - b + c;
+    if (valid && subtotal >= 300)
+        total = subtotal + fee;
+    else if (!valid || subtotal < 100)
+        total = subtotal + fee + 15;
+    else
+        total = subtotal + fee;
 
-    printf("a = %d\n", a);
-    printf("b = %d\n", b);
-    printf("c = %d\n", c);
+    printf("choice = %d\n", choice);
+    printf("tickets = %d\n", tickets);
+    printf("ticketPrice = %d\n", ticketPrice);
+    printf("fee = %d\n", fee);
+    printf("subtotal = %d\n", subtotal);
     printf("total = %d\n", total);
-    printf("level = %d\n", level);
-    printf("bonus = %d\n", bonus);
-    printf("result = %d\n", result);
-
+    printf("valid = %d\n", valid);
     return 0;
 }

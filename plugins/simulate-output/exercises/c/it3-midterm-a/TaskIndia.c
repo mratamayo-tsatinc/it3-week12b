@@ -1,80 +1,44 @@
 /*
 @output
-x = 14
-y = 6
-score = 20
-category = 3
-points = 15
+score = 86
+activities = 2
+basePoints = 50
+bonus = 20
+finalPoints = 70
+qualified = 1
 
 @variables
-x = 14
-y = 6
-score = 20
-category = 3
-points = 15
+score = 86
+activities = 2
+basePoints = 50
+bonus = 20
+finalPoints = 70
+qualified = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int x = 14;
-    int y = 6;
-    int score;
-    int category;
-    int points = 5;
+    int score = 86, activities = 2, basePoints = 50;
+    int bonus = 10, finalPoints, qualified;
 
-    score = x + y * 3;
+    finalPoints = basePoints + score / 10 * 2 - activities * 3;
+    qualified = (score >= 75 && activities >= 2) ||
+                (score >= 90 && !((activities < 1)));
 
-    if (score >= 30)
-    {
-        category = 3;
-    }
-    else if (score >= 20)
-    {
-        category = 2;
-    }
-    else
-    {
-        category = 1;
-    }
+    if (qualified && score >= 85)
+        bonus = bonus + 10;
+    else if (!qualified || score < 60)
+        bonus = 0;
 
-    if (category == 3)
-    {
-        points = points + 10;
-    }
-    else if (category == 2)
-    {
-        points = points + 5;
-    }
-    else
-    {
-        points = points + 2;
-    }
+    finalPoints = basePoints + bonus;
 
-    switch (category)
-    {
-        case 1:
-            score = score + points;
-            break;
-
-        case 2:
-            score = score * 2;
-            break;
-
-        case 3:
-            score = score - points;
-            break;
-
-        default:
-            score = 0;
-    }
-
-    printf("x = %d\n", x);
-    printf("y = %d\n", y);
     printf("score = %d\n", score);
-    printf("category = %d\n", category);
-    printf("points = %d\n", points);
-
+    printf("activities = %d\n", activities);
+    printf("basePoints = %d\n", basePoints);
+    printf("bonus = %d\n", bonus);
+    printf("finalPoints = %d\n", finalPoints);
+    printf("qualified = %d\n", qualified);
     return 0;
 }

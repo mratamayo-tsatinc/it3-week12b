@@ -1,57 +1,49 @@
 /*
 @output
-a = 6
-b = 11
-choice = 2
-result = 10
+nights = 3
+roomRate = 650
+mealCost = 300
+roomTotal = 2150
+discount = 100
+totalBill = 2350
+eligible = 1
 
 @variables
-a = 6
-b = 11
-choice = 2
-result = 10
+nights = 3
+roomRate = 650
+mealCost = 300
+roomTotal = 2150
+discount = 100
+totalBill = 2350
+eligible = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int a = 6;
-    int b = 9;
-    int result;
-    int choice;
+    int nights = 3, roomRate = 650, mealCost = 300;
+    int roomTotal, discount = 50, totalBill, eligible;
 
-    result = a * 2 + b;
+    roomTotal = nights * roomRate + mealCost / 3 * 2;
+    eligible = (nights >= 3 && roomRate >= 500) ||
+               (mealCost > 500 && !((nights < 2)));
 
-    if (result > 20)
-    {
-        choice = 2;
-    }
+    if (eligible && roomTotal >= 2000)
+        discount = discount + 50;
+    else if (eligible || nights == 1)
+        discount = discount + 50;
     else
-    {
-        choice = 1;
-    }
+        discount = 0;
 
-    switch (choice)
-    {
-        case 1:
-            result = result + 5;
-            a = a + 1;
-            break;
+    totalBill = roomTotal + mealCost - discount;
 
-        case 2:
-            result = result - 7;
-            b = b + 2;
-            break;
-
-        default:
-            result = 0;
-    }
-
-    printf("a = %d\n", a);
-    printf("b = %d\n", b);
-    printf("choice = %d\n", choice);
-    printf("result = %d\n", result);
-
+    printf("nights = %d\n", nights);
+    printf("roomRate = %d\n", roomRate);
+    printf("mealCost = %d\n", mealCost);
+    printf("roomTotal = %d\n", roomTotal);
+    printf("discount = %d\n", discount);
+    printf("totalBill = %d\n", totalBill);
+    printf("eligible = %d\n", eligible);
     return 0;
 }

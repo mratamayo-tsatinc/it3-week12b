@@ -1,48 +1,61 @@
 /*
 @output
-option = 2
-points = 14
-value = 4
+choice = 2
+balance = 900
+amount = 250
+fee = 15
+finalBalance = 635
+status = 1
 
 @variables
-option = 2
-points = 14
-value = 4
+choice = 2
+balance = 900
+amount = 250
+fee = 15
+finalBalance = 635
+status = 1
 */
 
 #include <stdio.h>
 
 int main(void)
 {
-    int option = 2;
-    int points = 10;
-    int value = 4;
+    int choice = 2, balance = 900, amount = 250, fee = 15;
+    int finalBalance, status = 0;
 
-    switch (option)
+    switch (choice)
     {
         case 1:
-            points = points + 5;
+            finalBalance = balance + amount - fee;
+            status = (amount > 0 && balance >= 0);
             break;
-
         case 2:
-            points = points + value;
-
+            finalBalance = balance - amount - fee;
+            status = (amount > 0 && amount <= balance) ||
+                     !((amount > balance));
+            break;
         case 3:
-            points = points * 2;
-            value = value + 1;
+            finalBalance = balance;
+            status = 0;
             break;
-
-        case 4:
-            points = points - 3;
-            break;
-
         default:
-            points = 0;
+            finalBalance = 0;
+            status = 0;
     }
 
-    printf("option = %d\n", option);
-    printf("points = %d\n", points);
-    printf("value = %d\n", value);
+    if (status && finalBalance >= 500)
+        fee = fee + 0;
+    else if (!status || finalBalance < 0)
+        fee = fee + 10;
 
+    if (choice == 2)
+        finalBalance = balance - amount - fee;
+
+    printf("choice = %d\n", choice);
+    printf("balance = %d\n", balance);
+    printf("amount = %d\n", amount);
+    printf("fee = %d\n", fee);
+    printf("finalBalance = %d\n", finalBalance);
+    printf("status = %d\n", status);
     return 0;
 }
