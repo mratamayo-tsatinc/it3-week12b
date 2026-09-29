@@ -1,20 +1,49 @@
 /*
 @output
-NUMBER SEQUENCE:
-5 4 3 2 1
+choice = 3
+value = 13
+result = 6
 
 @variables
-(this program does not declare any variables)
+choice = 3
+value = 13
+result = 6
 */
+
 #include <stdio.h>
- 
-int main() {
-    printf("NUMBER SEQUENCE:\n");
-    printf("5 ");
-    printf("4 ");
-    printf("3 ");
-    printf("2 ");
-    printf("1\n");
+
+int main(void)
+{
+    int choice = 3;
+    int value = 10;
+    int result;
+
+    switch (choice)
+    {
+        case 1:
+            result = value + 5;
+            break;
+
+        case 2:
+            result = value * 2;
+            break;
+
+        case 3:
+            result = value - 4;
+            value = value + 3;
+            break;
+
+        case 4:
+            result = value / 2;
+            break;
+
+        default:
+            result = 0;
+    }
+
+    printf("choice = %d\n", choice);
+    printf("value = %d\n", value);
+    printf("result = %d\n", result);
 
     return 0;
 }

@@ -1,24 +1,51 @@
 /*
 @output
-NUMBER SEQUENCE:
-5
-4
-3
-2
-1
+age = 19
+score = 82
+points = 20
+status = 1
 
 @variables
-(this program does not declare any variables)
+age = 19
+score = 82
+points = 20
+status = 1
 */
+
 #include <stdio.h>
- 
-int main() {
-    printf("NUMBER SEQUENCE:\n");
-    printf("5\n");
-    printf("4\n");
-    printf("3\n");
-    printf("2\n");
-    printf("1\n");
+
+int main(void)
+{
+    int age = 19;
+    int score = 82;
+    int points = 5;
+    int status = 0;
+
+    if (age >= 18)
+    {
+        points = points + 5;
+
+        if (score >= 80)
+        {
+            points = points + 10;
+            status = 1;
+        }
+        else
+        {
+            points = points + 2;
+            status = 2;
+        }
+    }
+    else
+    {
+        points = points - 1;
+        status = 3;
+    }
+
+    printf("age = %d\n", age);
+    printf("score = %d\n", score);
+    printf("points = %d\n", points);
+    printf("status = %d\n", status);
 
     return 0;
 }

@@ -1,21 +1,48 @@
 /*
 @output
-===NO OUTPUT===
+option = 2
+points = 14
+value = 4
+
 @variables
-a = 10
-b = 5
-c = 3
-d = 1
+option = 2
+points = 14
+value = 4
 */
+
 #include <stdio.h>
 
-int main() {
-    int a = 10;
-    int b = 5;
-    int c = 3;
-    int d = 1;
+int main(void)
+{
+    int option = 2;
+    int points = 10;
+    int value = 4;
 
-    printf("===NO OUTPUT===");
+    switch (option)
+    {
+        case 1:
+            points = points + 5;
+            break;
+
+        case 2:
+            points = points + value;
+
+        case 3:
+            points = points * 2;
+            value = value + 1;
+            break;
+
+        case 4:
+            points = points - 3;
+            break;
+
+        default:
+            points = 0;
+    }
+
+    printf("option = %d\n", option);
+    printf("points = %d\n", points);
+    printf("value = %d\n", value);
 
     return 0;
 }

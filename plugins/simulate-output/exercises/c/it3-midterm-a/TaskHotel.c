@@ -1,22 +1,57 @@
 /*
 @output
-Learning escape characters in C
-She said, "C programming is fun!"
-It's time to practice.
-File path: C:\Programs\C
-Loading Done!      
+a = 6
+b = 11
+choice = 2
+result = 10
 
 @variables
-(this program does not declare any variables)
+a = 6
+b = 11
+choice = 2
+result = 10
 */
+
 #include <stdio.h>
 
-int main() {
-    printf("Learning escape characters in C\n");
-    printf("She said, \"C programming is fun!\"\n");
-    printf("It\'s time to practice.\n");
-    printf("File path: C:\\Programs\\C\n");
-    printf("Loading......\r");
-    printf("Loading Done!\n");
+int main(void)
+{
+    int a = 6;
+    int b = 9;
+    int result;
+    int choice;
+
+    result = a * 2 + b;
+
+    if (result > 20)
+    {
+        choice = 2;
+    }
+    else
+    {
+        choice = 1;
+    }
+
+    switch (choice)
+    {
+        case 1:
+            result = result + 5;
+            a = a + 1;
+            break;
+
+        case 2:
+            result = result - 7;
+            b = b + 2;
+            break;
+
+        default:
+            result = 0;
+    }
+
+    printf("a = %d\n", a);
+    printf("b = %d\n", b);
+    printf("choice = %d\n", choice);
+    printf("result = %d\n", result);
+
     return 0;
 }

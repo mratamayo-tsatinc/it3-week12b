@@ -1,40 +1,80 @@
 /*
 @output
-Stored values:
-==========
-a = 10
-==========
-b = 5
-==========
-c = 3
-==========
-d = 1
-==========
+x = 14
+y = 6
+score = 20
+category = 3
+points = 15
 
 @variables
-a = 10
-b = 5
-c = 3
-d = 1
+x = 14
+y = 6
+score = 20
+category = 3
+points = 15
 */
+
 #include <stdio.h>
 
-int main() {
-    int a = 10;
-    int b = 5;
-    int c = 3;
-    int d = 1;
+int main(void)
+{
+    int x = 14;
+    int y = 6;
+    int score;
+    int category;
+    int points = 5;
 
-    printf("Stored values:\n");
-    printf("==========\n");
-    printf("a = %d\n", a);
-    printf("==========\n");
-    printf("b = %d\n", b);
-    printf("==========\n");
-    printf("c = %d\n", c);
-    printf("==========\n");
-    printf("d = %d\n", d);
-    printf("==========\n");
+    score = x + y * 3;
+
+    if (score >= 30)
+    {
+        category = 3;
+    }
+    else if (score >= 20)
+    {
+        category = 2;
+    }
+    else
+    {
+        category = 1;
+    }
+
+    if (category == 3)
+    {
+        points = points + 10;
+    }
+    else if (category == 2)
+    {
+        points = points + 5;
+    }
+    else
+    {
+        points = points + 2;
+    }
+
+    switch (category)
+    {
+        case 1:
+            score = score + points;
+            break;
+
+        case 2:
+            score = score * 2;
+            break;
+
+        case 3:
+            score = score - points;
+            break;
+
+        default:
+            score = 0;
+    }
+
+    printf("x = %d\n", x);
+    printf("y = %d\n", y);
+    printf("score = %d\n", score);
+    printf("category = %d\n", category);
+    printf("points = %d\n", points);
 
     return 0;
 }
